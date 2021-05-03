@@ -1,31 +1,6 @@
 var map = document.getElementById("map");
 var mapContainer = document.getElementById("map__container");
 
-var mapContainerX;
-var mapContainerY;
-var mouseX;
-var mouseY;
-
-// window.addEventListener("resize", () => {
-//   setMapContainerToMiddle();
-// });
-
-// //set map to center of screen
-// const setMapContainerToMiddle = () => {
-//   let mapWidth = map.clientWidth;
-//   let mapHeight = map.clientHeight;
-//   let mapContainerWidth = mapContainer.clientWidth;
-//   let mapContainerHeight = mapContainer.clientHeight;
-
-//   let mapContainerTop = (mapHeight - mapContainerHeight) / 2;
-//   let mapContainerLeft = (mapWidth - mapContainerWidth) / 2;
-
-//   mapContainer.style.top = mapContainerTop + "px";
-//   mapContainer.style.left = mapContainerLeft + "px";
-// };
-
-// setMapContainerToMiddle();
-
 //change map size
 const mapSize = (e) => {
   let mapContainerWidth = mapContainer.clientWidth;
@@ -42,16 +17,16 @@ const mapSize = (e) => {
   setMapContainerToMiddle();
 };
 
-mapContainer.addEventListener("wheel", (event) => {
+mapContainer.onwheel = (event) => {
   if (event.deltaY < 0) {
     mapSize("increase");
   } else if (event.deltaY > 0) {
     mapSize("decrease");
   }
-});
+};
 
 //drag the map
-function startDrag(e) {
+const startDrag = (e) => {
   // determine event object
   if (!e) {
     var e = window.event;
@@ -86,9 +61,9 @@ function startDrag(e) {
   document.onmousemove = dragDiv;
 
   return false;
-}
+};
 
-function dragDiv(e) {
+const dragDiv = (e) => {
   if (!drag) {
     return;
   }
@@ -100,13 +75,13 @@ function dragDiv(e) {
   targ.style.left = coordX + e.clientX - offsetX + "px";
   targ.style.top = coordY + e.clientY - offsetY + "px";
   return false;
-}
+};
 
-function stopDrag() {
+const stopDrag = () => {
   drag = false;
-}
+};
 
-window.onload = function () {
+window.onload = () => {
   document.onmousedown = startDrag;
   document.onmouseup = stopDrag;
 };
