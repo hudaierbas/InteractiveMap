@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.map {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.map__container {
+  height: 700px;
+  width: 1100px;
+  border: 2px solid red;
+  position: absolute;
+}
