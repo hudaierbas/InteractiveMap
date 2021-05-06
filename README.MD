@@ -3,5 +3,5 @@
 Vanilla JS Interactive Map
 
 TODO:
--pin hover
+-fill the pin hover div
 -min and max map size

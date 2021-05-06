@@ -1,6 +1,7 @@
 var map = document.getElementById("map");
 var mapContainer = document.getElementById("map__container");
 var scene = document.getElementById("scene");
+var pinHover;
 
 //change map size
 var increaseRate = mapContainer.clientWidth / mapContainer.clientHeight;
@@ -119,8 +120,11 @@ var testData = {
 var count = Object.keys(testData).length;
 
 //on hover pin
-const pinHover = (pinNo) => {
-  console.log(pinNo);
+const hoverPin = (pinNo) => {
+  pinHover.style.top =
+    (testData[`${pinNo}`].coordY / mapContainer.clientHeight) * 100 + 1.1 + "%";
+  pinHover.style.left =
+    (testData[`${pinNo}`].coordX / mapContainer.clientWidth) * 100 + 1 + "%";
 };
 
 //create pins
@@ -131,12 +135,16 @@ const createPin = () => {
     const pin = document.createElement("img");
     pin.className = "pin";
     pin.src = "./img/pin.png";
-    pin.setAttribute("onmouseover", `pinHover(${index})`);
+    pin.setAttribute("onmouseover", `hoverPin(${index})`);
     pin.style.top = (element.coordY / mapContainer.clientHeight) * 100 + "%";
     pin.style.left = (element.coordX / mapContainer.clientWidth) * 100 + "%";
 
     scene.appendChild(pin);
   }
+  const elemPinHover = document.createElement("div");
+  elemPinHover.id = "pinHover";
+  scene.appendChild(elemPinHover);
+  pinHover = document.getElementById("pinHover");
 };
 
 createPin();
