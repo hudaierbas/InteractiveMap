@@ -1,4 +1,5 @@
-#InteractiveMap
+# InteractiveMap
+
 Vanilla JS Interactive Map
 
 TODO:
