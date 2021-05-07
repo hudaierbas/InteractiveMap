@@ -95,6 +95,7 @@ const stopDrag = () => {
 window.onload = () => {
   document.onmousedown = startDrag;
   document.onmouseup = stopDrag;
+  createPin();
 };
 
 //test data
