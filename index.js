@@ -178,5 +178,3 @@ const createPin = () => {
   pinHoverText.id = "pinHoverText";
   pinHover.appendChild(pinHoverText);
 };
-
-createPin();
