@@ -3,5 +3,5 @@
 Vanilla JS Interactive Map
 
 TODO:
--fill the pin hover div
--min and max map size
+-min and max map size  
+-sidebar to change map and costumize it

@@ -4,7 +4,9 @@ var scene = document.getElementById("scene");
 var pinHover;
 
 //change map size
-var increaseRate = mapContainer.clientWidth / mapContainer.clientHeight;
+var mapHeight = mapContainer.clientHeight;
+var mapWidth = mapContainer.clientWidth;
+var increaseRate = mapWidth / mapHeight;
 
 const mapSize = (x) => {
   //map current size
@@ -98,18 +100,24 @@ window.onload = () => {
 //test data
 var testData = {
   1: {
+    img:
+      "https://www.thephuketnews.com/photo/listing/2017/1512714016_1-org.jpg",
     title: "data1",
     info: "info 1 info 1info 1info 1info 1info 1info 1info 1info 1",
     coordX: "310",
     coordY: "210",
   },
   2: {
+    img:
+      "https://geographical.co.uk/media/k2/items/cache/8e4e30c8fc08507de1b0b5afc7d32a85_XL.jpg",
     title: "data2",
     info: "info 2 info 2info 2info 2info 2info 2info 2info 2info 2",
     coordX: "200",
     coordY: "300",
   },
   3: {
+    img:
+      "https://cdn.dsmcdn.com/ty6/product/media/images/20200717/14/4726625/8181265/1/1_org_zoom.jpg",
     title: "data2",
     info: "info 2 info 2info 2info 2info 2info 2info 2info 2info 2",
     coordX: "200",
@@ -122,9 +130,18 @@ var count = Object.keys(testData).length;
 //on hover pin
 const hoverPin = (pinNo) => {
   pinHover.style.top =
-    (testData[`${pinNo}`].coordY / mapContainer.clientHeight) * 100 + 1.1 + "%";
+    (testData[`${pinNo}`].coordY / mapHeight) * 100 + 1.1 + "%";
   pinHover.style.left =
-    (testData[`${pinNo}`].coordX / mapContainer.clientWidth) * 100 + 1 + "%";
+    (testData[`${pinNo}`].coordX / mapWidth) * 100 + 1 + "%";
+
+  //fill pin hover
+  const pinHoverImg = document.getElementById("pinHoverImg");
+  const pinHoverTitle = document.getElementById("pinHoverTitle");
+  const pinHoverText = document.getElementById("pinHoverText");
+
+  pinHoverImg.setAttribute("src", testData[`${pinNo}`].img);
+  pinHoverTitle.innerHTML = testData[`${pinNo}`].title;
+  pinHoverText.innerHTML = testData[`${pinNo}`].info;
 };
 
 //create pins
@@ -141,10 +158,24 @@ const createPin = () => {
 
     scene.appendChild(pin);
   }
+  //pin hover container
   const elemPinHover = document.createElement("div");
   elemPinHover.id = "pinHover";
   scene.appendChild(elemPinHover);
   pinHover = document.getElementById("pinHover");
+
+  //pin hover img
+  const pinHoverImg = document.createElement("img");
+  pinHoverImg.id = "pinHoverImg";
+  pinHover.appendChild(pinHoverImg);
+  //pin hover title
+  const pinHoverTitle = document.createElement("div");
+  pinHoverTitle.id = "pinHoverTitle";
+  pinHover.appendChild(pinHoverTitle);
+  //pin hover text
+  const pinHoverText = document.createElement("div");
+  pinHoverText.id = "pinHoverText";
+  pinHover.appendChild(pinHoverText);
 };
 
 createPin();
